@@ -2,10 +2,6 @@
 {
   description = "GLFW-b demo";
 
-  inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:NixOS/nixpkgs/haskell-updates";
-  };
   outputs = { self, nixpkgs, flake-utils }:
   (
     flake-utils.lib.eachSystem [ "x86_64-linux" ] (system: let
@@ -21,8 +17,8 @@
         }
       );
       in {
-        defaultPackage = project false;
-        devShell = project true;
+        packages.default = project false;
+        devShells.default = project true;
       }
     )
   );
